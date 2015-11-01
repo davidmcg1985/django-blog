@@ -5,23 +5,37 @@
 
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Purple+Purse' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{% static "css/blog.css" %}">
 
     </head>
     <body>
 
         <div class="page-header">
-            {% if user.is_authenticated %}
-            <a href="{% url "post_new" %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-            {% endif %}
-            <a href="{% url "post_draft_list" %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
             <h1><a href="/">Simple Django Blog</a></h1>
+        </div>
+
+        <div class="page-nav">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>David McGowan | <a href="http://www.dmcportfolio.co.uk" target="new">dmcportfolio.co.uk</a></h3>
+                </div>
+                <div class="col-lg-4">
+                {% if user.is_authenticated %}
+                <p class="hello top-menu">Hello {{ user.username }}<small>(<a href="{% url "django.contrib.auth.views.logout" %}">Log out</a>)</small></p>
+                <a href="{% url "post_new" %}" class="btn btn-default top-menu">New Post</a>
+                <a href="{% url "post_draft_list" %}" class="btn btn-default top-menu">Drafts</a>
+                {% else %}
+                <a href="{% url "django.contrib.auth.views.login" %}" class="btn btn-default top-menu">Login</a>
+                {% endif %}
+                </div>
+            </div>
         </div>
 
         <div class="content container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-lg-12">
                 {% block content %}
                 {% endblock %}
                 </div>
