@@ -1,1 +1,1 @@
-# my-first-blog
+# Simple blog created in Django
